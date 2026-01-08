@@ -1,0 +1,337 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Core Colors - Indian Government Palette */
+    --background: 210 20% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Deep Navy Blue - Trust & Authority */
+    --primary: 222 65% 25%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Saffron/Orange - Warmth & Energy */
+    --secondary: 28 90% 55%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Light backgrounds */
+    --muted: 210 20% 96%;
+    --muted-foreground: 220 15% 45%;
+
+    /* Saffron accent */
+    --accent: 28 90% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Indian Green - Success */
+    --success: 145 63% 32%;
+    --success-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 20% 88%;
+    --input: 220 20% 88%;
+    --ring: 222 65% 25%;
+
+    --radius: 0.75rem;
+
+    /* Custom gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(222, 65%, 25%) 0%, hsl(222, 55%, 35%) 50%, hsl(28, 90%, 55%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0, 0%, 100%) 0%, hsl(210, 20%, 98%) 100%);
+    --gradient-chat: linear-gradient(180deg, hsl(210, 25%, 97%) 0%, hsl(210, 20%, 94%) 100%);
+    --gradient-saffron: linear-gradient(135deg, hsl(28, 90%, 55%) 0%, hsl(35, 95%, 50%) 100%);
+    --gradient-tricolor: linear-gradient(180deg, hsl(28, 90%, 55%) 0%, hsl(0, 0%, 100%) 50%, hsl(145, 63%, 32%) 100%);
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(222 47% 11% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(222 47% 11% / 0.1), 0 2px 4px -2px hsl(222 47% 11% / 0.1);
+    --shadow-lg: 0 10px 15px -3px hsl(222 47% 11% / 0.1), 0 4px 6px -4px hsl(222 47% 11% / 0.1);
+    --shadow-xl: 0 20px 25px -5px hsl(222 47% 11% / 0.1), 0 8px 10px -6px hsl(222 47% 11% / 0.1);
+    --shadow-chat: 0 8px 30px hsl(222 47% 11% / 0.15);
+    --shadow-glow: 0 0 40px hsl(28 90% 55% / 0.3);
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222 47% 8%;
+    --foreground: 210 20% 98%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 28 90% 55%;
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 222 65% 35%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 222 40% 15%;
+    --muted-foreground: 220 15% 65%;
+
+    --accent: 28 90% 55%;
+    --accent-foreground: 222 47% 11%;
+
+    --success: 145 63% 42%;
+    --success-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 30% 20%;
+    --input: 222 30% 20%;
+    --ring: 28 90% 55%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif;
+  }
+}
+
+@layer components {
+  /* Chatbot specific styles */
+  .chatbot-container {
+    @apply fixed bottom-4 right-4 z-50;
+  }
+
+  .chatbot-window {
+    @apply bg-card rounded-2xl overflow-hidden;
+    box-shadow: var(--shadow-chat);
+  }
+
+  .chat-bubble-user {
+    @apply bg-primary text-primary-foreground rounded-2xl rounded-br-md px-4 py-3;
+  }
+
+  .chat-bubble-bot {
+    @apply bg-muted text-foreground rounded-2xl rounded-bl-md px-4 py-3;
+  }
+
+  /* Voice button pulse animation */
+  .voice-pulse {
+    @apply relative;
+  }
+
+  .voice-pulse::before {
+    content: '';
+    @apply absolute inset-0 rounded-full bg-secondary;
+    animation: pulse-ring 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Step indicator */
+  .step-indicator {
+    @apply flex items-center gap-2;
+  }
+
+  .step-dot {
+    @apply w-3 h-3 rounded-full bg-muted transition-all duration-300;
+  }
+
+  .step-dot.active {
+    @apply bg-secondary scale-125;
+  }
+
+  .step-dot.completed {
+    @apply bg-success;
+  }
+
+  /* Service card hover effect */
+  .service-card {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .service-card:hover {
+    @apply -translate-y-1;
+    box-shadow: var(--shadow-xl);
+  }
+
+  /* Language selector pill */
+  .lang-pill {
+    @apply px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200;
+  }
+
+  .lang-pill:hover {
+    @apply bg-secondary/10;
+  }
+
+  .lang-pill.active {
+    @apply bg-secondary text-secondary-foreground;
+  }
+
+  /* Accessibility - focus visible */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+  }
+
+  /* Large touch targets for accessibility */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  /* First-time user mode - larger elements */
+  .first-time-mode .touch-target {
+    @apply min-h-[56px] min-w-[56px] text-lg;
+  }
+
+  /* Tricolor top border */
+  .tricolor-border {
+    @apply relative;
+  }
+
+  .tricolor-border::before {
+    content: '';
+    @apply absolute top-0 left-0 right-0 h-1;
+    background: var(--gradient-tricolor);
+  }
+}
+
+@layer utilities {
+  /* Animations */
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(1.5);
+      opacity: 0;
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes typing {
+    0%, 60%, 100% {
+      transform: translateY(0);
+    }
+    30% {
+      transform: translateY(-5px);
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.5s ease-out forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.3s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out forwards;
+  }
+
+  .animate-typing {
+    animation: typing 1.4s ease-in-out infinite;
+  }
+
+  /* Staggered animations */
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-hero);
+  }
+
+  /* Glass effect */
+  .glass {
+    @apply bg-card/80 backdrop-blur-md;
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
